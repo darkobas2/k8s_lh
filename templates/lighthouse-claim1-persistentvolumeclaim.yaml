@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  creationTimestamp: null
+  labels:
+    {{- include "lighthouse.labels" . | nindent 4 }}
+  name: lighthouse-claim1
+spec:
+  storageClassName: "local-storage"
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 250Gi
+  selector:
+    {{- toYaml .Values.persistence.selector | nindent 8 }}
+status: {}
