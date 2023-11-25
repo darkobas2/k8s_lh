@@ -1,1 +1,1 @@
-This chart was created by Kompose
+Lighthouse with auto public ip detection at startup
