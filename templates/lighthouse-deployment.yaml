@@ -38,7 +38,7 @@ spec:
         - args:
             - |
               export publicip=$(curl -s ifconfig.me)
-              lighthouse beacon_node --network gnosis --checkpoint-sync-url https://checkpoint.gnosischain.com/ --discovery-port 30301 --port 30301 --datadir /home/.eth2/beaconchaindata --http-address 0.0.0.0 --http --enr-address $publicip --enr-udp-port 30301 --target-peers 50 --metrics --metrics-address 0.0.0.0 --debug-level  --metrics-allow-origin "*" --execution-endpoint {{ .Values.rpcHost }} --execution-jwt="/secret/jwtsecret" --disable-upnp
+              lighthouse beacon_node --network gnosis --checkpoint-sync-url https://checkpoint.gnosischain.com/ --discovery-port 30301 --port 30301 --datadir /home/.eth2/beaconchaindata --http-address 0.0.0.0 --http --enr-address $publicip --enr-udp-port 30301 --target-peers 50 --metrics --metrics-address 0.0.0.0 --debug-level $$LOG_LEVEL --metrics-allow-origin "*" --execution-endpoint {{ .Values.rpcHost }} --execution-jwt="/secret/jwtsecret" --disable-upnp
           command:
             - /bin/bash
             - -c
