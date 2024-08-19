@@ -17,6 +17,8 @@ secretEnv:
 
 rpcHost: http://rpc:8551
 
+blockChain: gnosis
+
 nodeSelector:
   kubernetes.io/hostname: node1
 
