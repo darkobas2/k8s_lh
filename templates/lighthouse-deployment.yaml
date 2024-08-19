@@ -52,7 +52,7 @@ spec:
         - args:
             - |
               publicip=$(cat /shared/pubip)
-              lighthouse beacon_node --network gnosis --checkpoint-sync-url https://rpc-gbc.gnosischain.com/ --discovery-port 30301 --port 30301 --datadir /home/.eth2/beaconchaindata --http-address 0.0.0.0 --http --enr-address $publicip --enr-udp-port 30301 --target-peers 50 --metrics --metrics-address 0.0.0.0 --debug-level $LOG_LEVEL --metrics-allow-origin "*" --execution-endpoint {{ .Values.rpcHost }} --execution-jwt="/secret/jwtsecret" --disable-enr-auto-update
+              lighthouse beacon_node --network $CHAIN --checkpoint-sync-url https://rpc-gbc.gnosischain.com/ --discovery-port 30301 --port 30301 --datadir /home/.eth2/beaconchaindata --http-address 0.0.0.0 --http --enr-address $publicip --enr-udp-port 30301 --target-peers 50 --metrics --metrics-address 0.0.0.0 --debug-level $LOG_LEVEL --metrics-allow-origin "*" --execution-endpoint {{ .Values.rpcHost }} --execution-jwt="/secret/jwtsecret" --disable-enr-auto-update
           command:
             - /bin/bash
             - -c
@@ -69,6 +69,8 @@ spec:
           {{- end }}
             - name: LOG_LEVEL
               value: info
+            - NAME: BLOCKCHAIN
+              value: {{ .Values.blockChain }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           name: {{ include "lighthouse.fullname" . }}
