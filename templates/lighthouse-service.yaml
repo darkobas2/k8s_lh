@@ -15,12 +15,12 @@ spec:
       port: {{ .Values.p2p_port }}
       protocol: UDP
       targetPort: {{ .Values.p2p_port }}
-    - name: "http-api"
-      port: 5052
-      targetPort: 5052
-    - name: "metrics"
-      port: 5054
-      targetPort: 5054
+        #- name: "http-api"
+        #  port: 5052
+        #  targetPort: 5052
+        #- name: "metrics"
+        #  port: 5054
+        #  targetPort: 5054
   selector:
     {{- include "lighthouse.selectorLabels" . | nindent 4 }}
 status:
