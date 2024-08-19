@@ -9,12 +9,12 @@ spec:
   #type: NodePort
   ports:
     - name: "p2p-tcp"
-      port: 30301
-      targetPort: 30301
+      port: {{ .Values.p2p_port }}
+      targetPort: {{ .Values.p2p_port }}
     - name: "p2p-udp"
-      port: 30301
+      port: {{ .Values.p2p_port }}
       protocol: UDP
-      targetPort: 30301
+      targetPort: {{ .Values.p2p_port }}
     - name: "http-api"
       port: 5052
       targetPort: 5052
