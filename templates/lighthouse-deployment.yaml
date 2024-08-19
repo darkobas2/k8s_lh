@@ -74,7 +74,7 @@ spec:
             - name: P2P_PORT
               value: "{{ .Values.p2p_port }}"
             - name: SYNC_RPC
-              value: "{{ .Values.sync_rpc }}"
+              value: "{{ .Values.syncrpc }}"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           name: {{ include "lighthouse.fullname" . }}
@@ -92,7 +92,7 @@ spec:
               name: jwtsecret
               readOnly: true
             - mountPath: /home/.eth2/beaconchaindata
-              name: lighthouse-claim1
+              name: {{ include "lighthouse.fullname" . }}-data
       hostname: node
       restartPolicy: Always
       nodeSelector:
@@ -107,15 +107,15 @@ spec:
         {{ toYaml .Values.extraVolumes | nindent 8}}
       {{- end }}
   {{- if not .Values.persistence.enabled }}
-        - name: lighthouse-claim1
+        - name: {{ include "lighthouse.fullname" . }}-data
           emptyDir: {}
   {{- else if .Values.persistence.existingClaim }}
-        - name: lighthouse-claim1
+        - name: {{ include "lighthouse.fullname" . }}-data
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim }}
   {{- else }}
-        - name: lighthouse-claim1
+        - name: {{ include "lighthouse.fullname" . }}-data
           persistentVolumeClaim:
-            claimName: lighthouse-claim1
+            claimName: {{ include "lighthouse.fullname" . }}-data
   {{- end }}
 status: {}

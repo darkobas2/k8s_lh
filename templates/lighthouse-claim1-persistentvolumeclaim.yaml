@@ -1,5 +1,3 @@
-{{- $replicas := int .Values.replicas -}}
-{{- range $i := until $replicas }}
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
@@ -7,7 +5,7 @@ metadata:
   creationTimestamp: null
   labels:
     {{- include "lighthouse.labels" . | nindent 4 }}
-  name: {{ include "lighthouse.fullname" . }}-claim{{ $i | add 1 }}
+  name: {{ include "lighthouse.fullname" . }}-data
 spec:
   storageClassName: "local-storage"
   accessModes:
@@ -18,4 +16,3 @@ spec:
   selector:
     {{- toYaml .Values.persistence.selector | nindent 8 }}
 status: {}
-{{- end }}
