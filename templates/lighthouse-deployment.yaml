@@ -28,11 +28,13 @@ spec:
         {{- toYaml . | nindent 8 }}
         {{- end }}
     spec:
-      hostNetwork: false
-      #dnsPolicy: "None"
-      #dnsConfig:
-      #  nameservers:
-      #  - 169.254.25.10
+      hostNetwork: true
+      dnsPolicy: "ClusterFirstWithHostNet"
+      dnsConfig:
+        nameservers:
+        - 10.233.0.3
+        - 169.254.25.10
+        - 10.233.0.10
       initContainers:
         - name: init-publicip
           image: alpine
