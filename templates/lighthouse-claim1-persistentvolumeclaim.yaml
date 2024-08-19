@@ -1,4 +1,4 @@
-{{- $replicas := .Values.replicas -}}
+{{- $replicas := int .Values.replicas -}}
 {{- range $i := until $replicas }}
 ---
 apiVersion: v1
