@@ -54,7 +54,7 @@ spec:
         - args:
             - |
               publicip=$(cat /shared/pubip)
-              lighthouse beacon_node --network $BLOCKCHAIN --checkpoint-sync-url $SYNC_RPC --discovery-port $P2P_PORT --port $P2P_PORT --datadir /home/.eth2/beaconchaindata --enr-address $publicip --enr-udp-port $P2P_PORT --target-peers 50 --debug-level $LOG_LEVEL --execution-endpoint {{ .Values.rpcHost }} --execution-jwt="/secret/jwtsecret" --disable-enr-auto-update
+              lighthouse beacon_node --network $BLOCKCHAIN --checkpoint-sync-url $SYNC_RPC --discovery-port $P2P_PORT --port $P2P_PORT --datadir /home/.eth2/beaconchaindata --enr-address $publicip --enr-udp-port $P2P_PORT --target-peers 50 --debug-level $LOG_LEVEL --execution-endpoint {{ .Values.rpcHost }} --execution-jwt="/secret/jwtsecret" --disable-enr-auto-update --execution-timeout-multiplier 30
           command:
             - /bin/bash
             - -c
