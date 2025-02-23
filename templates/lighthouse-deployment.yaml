@@ -45,7 +45,7 @@ spec:
             - sh
             - -c
             - >
-              wget -T 2 http://ifconfig.me -q -O - > /shared/pubip;
+              wget -T 2 http://ifconfig.me/ip -q -O - > /shared/pubip;
               echo 'public ip initialization done';
           volumeMounts:
             - name: shared-data
